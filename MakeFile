@@ -1,0 +1,26 @@
+question1: 
+	python3 question1.py
+
+question2:
+	python3 question2.py
+
+question3:
+	python3 question3.py
+
+question4:
+	python3 question4.py
+
+question5:
+	python3 question5.py
+
+question6:
+	python3 question6.py
+
+question7:
+	python3 question7.py
+
+question8:
+	python3 question8.py
+
+clean:
+	rm -rf __pycache__
