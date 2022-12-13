@@ -19,7 +19,7 @@ class MT(object):
         return
 
 def initialisation(mot,fichier):
-    M1 = MT()
+    M1 = MT('I',,0)
     M1.preparation(fichier)
 
 initialisation('kayak','MT_Donnee.txt')

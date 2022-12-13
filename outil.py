@@ -8,7 +8,7 @@ def supp_n(lines):
     """
     return [lines[i][:lines[i].find('\n')] for i in range(len(lines)) if lines[i] != '\n']
 
-def verif_etat():
+def verif_etat_initial_final():
     return
 
 def verif_determinisme():
