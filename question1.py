@@ -12,14 +12,17 @@ class MT(object):
     def preparation(self,fichier):
         with open(fichier) as f:
             lines = outil.supp_n(f.readlines())
-        self.transitions = {lines[i] : lines[i+1] for i in range(0,len(lines),2)}
-        self.nb_bande = lines[0].split(',')-1
+        transitions = {lines[i] : lines[i+1] for i in range(0,len(lines),2)}
+        nb_bande = lines[0].split(',')-1
+        if outil.verif_determinisme(fichier,nb_bande,transitions):
+            self.transitions = transitions
+            self.nb_bande = nb_bande
 
     def affichage():
         return
 
 def initialisation(mot,fichier):
-    M1 = MT('I',,0)
+    M1 = MT('I',{1:mot},0)
     M1.preparation(fichier)
 
 initialisation('kayak','MT_Donnee.txt')
