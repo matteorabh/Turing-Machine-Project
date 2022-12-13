@@ -8,8 +8,16 @@ def supp_n(lines):
     """
     return [lines[i][:lines[i].find('\n')] for i in range(len(lines)) if lines[i] != '\n']
 
-def verif_etat_initial_final():
-    return
+def verif_etat_initial_final(fichier):
+    with open(fichier) as f:
+        lines = supp_n(f.readlines())
+    etats = [lines[i] for i in range(0,len(lines),2)]
+    if 'I' not in etats:
+        raise EnvironmentError("Il manque l'état initial I")
+    if 'F' not in etats:
+        raise EnvironmentError("Il manque l'état initial F")
+    else:
+        return True
 
 def verif_determinisme():
     return
