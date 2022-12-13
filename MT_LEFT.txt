@@ -1,0 +1,14 @@
+I, 1
+qdroite, 1, >
+
+I, 0
+qdroite, 0, >
+
+qdroite, 1
+qdroite, 1, >
+
+qdroite, 0
+qdroite, 0, >
+
+qdroite, _
+F, _, <

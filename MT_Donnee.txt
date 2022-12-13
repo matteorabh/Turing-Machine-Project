@@ -1,65 +1,65 @@
-I, a
-qa, c, >
+I, 1
+q1, #, >
 
-I, b
-qb, c, >
+I, 0
+q0, #, >
 
-I, c
-I, c, >
+I, #
+I, #, >
 
 I, _
 F, _, -
 
-qa, a
-qa, a, >
+q1, 1
+q1, 1, >
 
-qa, b
-qa, b, >
+q1, 0
+q1, 0, >
 
-qa, c
-qa, c, >
+q1, #
+q1, #, >
 
-qa, _
-q1a, _, <
+q1, _
+q#1, _, <
 
-q1a, a
-q1a, a, <
+q#1, 1
+q#1, 1, <
 
-q1a, b
-qret, c, <
+q#1, 0
+qret, #, <
 
-q1a, c
-q1a, c, <
+q#1, #
+q#1, #, <
 
-qb, a
-qb, a, >
+q0, 1
+q0, 1, >
 
-qb, b
-qb, b, >
+q0, 0
+q0, 0, >
 
-qb, c
-qb, c, >
+q0, #
+q0, #, >
 
-qb, _
-q1b, _, <
+q0, _
+q#0, _, <
 
-q1b, b
-q1b, b, <
+q#0, 0
+q#0, 0, <
 
-q1b, a
-qret, c, <
+q#0, 1
+qret, #, <
 
-q1b, c
-q1b, c, <
+q#0, #
+q#0, #, <
 
-qret, a
-qret, a, <
+qret, 1
+qret, 1, <
 
-qret, b
-qret, b, <
+qret, 0
+qret, 0, <
 
-qret, c
-qret, c, <
+qret, #
+qret, #, <
 
 qret, _
 I, _, >

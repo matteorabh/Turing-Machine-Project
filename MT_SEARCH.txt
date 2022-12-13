@@ -1,0 +1,11 @@
+I, 1
+F, 1, -
+
+I, 0
+qcherche, 0, >
+
+qcherche, 1
+F, 1, -
+
+qcherche, 0
+qcherche, 0, >
