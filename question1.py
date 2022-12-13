@@ -4,11 +4,29 @@ class MT(object):
         self.etat = etat
         self.etat_bande = etat_bande
         self.tete_lecture = tete_lecture
+        self.nb_bande = 0
+        transitions = {}
+
+    def preparation(fichier):
+        with open("fichier.txt") as f:
+            lines = supp_n(f.readlines())
+
+        
+            
+        return
+
+    def affichage():
+        return
 
 def initialisation(mot,fichier="MT_Donnee.txt"):
-    l_mot = [lettre for lettre in mot]
-    return MT('I',l_mot,0)
+    M1 = MT()
+    M1.preparation(fichier)
+    return 
+    
+def supp_n(lines):
+    """
+    Fonction qui supprime les \n d'une liste
+    (Utile après le stockage du fichier)
+    """
+    return [lines[i][:lines[i].find('\n')] for i in range(len(lines))]
 
-
-# Doit-on faire des unittest ?
-# Question 2 : machine de turing = fichier ou = class MT
