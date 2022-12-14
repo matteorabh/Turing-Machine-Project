@@ -13,9 +13,11 @@ def verif_etat_initial_final(fichier):
         lines = supp_n(f.readlines())
     etats = [lines[i][0] for i in range(0,len(lines),2)]
     if 'I' not in etats:
-        raise EnvironmentError("Il manque l'état initial I")
+        print("Il manque l'état initial I")
+        exit()
     if 'F' not in etats:
-        raise EnvironmentError("Il manque l'état initial F")
+        print("Il manque l'état initial F")
+        exit()
     else:
         return True
 
