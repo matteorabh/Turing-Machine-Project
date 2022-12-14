@@ -11,7 +11,7 @@ def supp_n(lines):
 def verif_etat_initial_final(fichier):
     with open(fichier) as f:
         lines = supp_n(f.readlines())
-    etats = [lines[i][0] for i in range(0,len(lines),2)]
+    etats = {lines[i][0] for i in range(len(lines))}
     if 'I' not in etats:
         print("Il manque l'état initial I")
         exit()
