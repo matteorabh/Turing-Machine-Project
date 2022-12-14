@@ -17,8 +17,8 @@ class MT(object):
         self.transitions = {lines[i] : lines[i+1] for i in range(0,len(lines),2)}
         self.nb_bande = len(lines[0].split(','))-1
         self.tete_lecture = {i:0 for i in range(1,self.nb_bande+1)}
-        self.etat_bande = {i :'_' for i in range(1,self.nb_bande+1)}
-        self.etat_bande[1] = mot
+        self.etat_bande = {i :['_'] for i in range(1,self.nb_bande+1)}
+        self.etat_bande[1] = [lettre for lettre in str(mot)]
 
         #Vérifications qu'il n'y a pas d'erreur dans le fichier
         #outil.verif_determinisme(fichier,self.nb_bande,self.transitions)
