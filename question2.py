@@ -23,4 +23,4 @@ def pas(MT):
         print("Vous n'avez pas initialisé votre machine de Turing!")
         exit()
 
-print(pas(question1.initialisation('kayak','MT_Donnee.txt')))
+print(pas(question1.initialisation('1010','MT_Donnee.txt')))
