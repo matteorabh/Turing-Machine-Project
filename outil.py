@@ -6,7 +6,7 @@ def supp_n(lines):
     Fonction qui supprime les \n d'une liste
     (Utile après le stockage du fichier)
     """
-    return [lines[i][:lines[i].find('\n')] for i in range(len(lines)) if lines[i] != '\n']
+    return [lines[i].rstrip('\n').replace(' ','') for i in range(len(lines)) if lines[i] != '\n']
 
 def verif_etat_initial_final(fichier):
     with open(fichier) as f:
