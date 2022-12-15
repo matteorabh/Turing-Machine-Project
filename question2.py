@@ -1,4 +1,4 @@
-import question1
+from question1 import initialisation
 
 
 def allonge_bande(liste,binaire):
@@ -29,8 +29,9 @@ def pas(MT):
                 allonge_bande(MT.etat_bande[i],1)
             elif ligne_2[i+nb_bande] == '<':
                 MT.etat_bande[i] = allonge_bande(MT.etat_bande[i],0)
+
     else:
         print("Vous n'avez pas initialisé votre machine de Turing!")
         exit()
 
-pas(question1.initialisation('1010','MT_Donnee.txt'))
+pas(initialisation('1010','MT_Donnee.txt'))

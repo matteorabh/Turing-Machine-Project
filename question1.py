@@ -1,4 +1,4 @@
-import outil
+from outil import supp_n, verif_etat_initial_final
 
 
 class MT(object):
@@ -12,7 +12,7 @@ class MT(object):
 
     def preparation_initial(self,fichier,mot):
         with open(fichier) as f:
-            lines = outil.supp_n(f.readlines())
+            lines = supp_n(f.readlines())
 
         self.transitions = {lines[i] : lines[i+1] for i in range(0,len(lines),2)}
         self.nb_bande = len(lines[0].split(','))-1
@@ -22,7 +22,14 @@ class MT(object):
 
         #Vérifications qu'il n'y a pas d'erreur dans le fichier
         #outil.verif_determinisme(fichier,self.nb_bande,self.transitions)
-        outil.verif_etat_initial_final(fichier)
+        verif_etat_initial_final(fichier)
+
+    def element(self):
+        print('état courant :', self.etat)
+        print('nombre de bande :', self.nb_bande)
+        print('état des bandes :', self.etat_bande)
+        print('position tete de lecture pour chaque bande :', self.tete_lecture)
+        print('Les transitions du fichier :', self.transitions)
 
     def affichage():
         print("--------------------------------")
@@ -35,5 +42,5 @@ def initialisation(mot,fichier):
     return M1
 
 M1 = initialisation('1010','MT_Donnee.txt')
-#M1.affichage()
+M1.element()
     
