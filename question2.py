@@ -25,7 +25,11 @@ def pas(MT):
         #recupération données
         for i in range(1,nb_bande+1):
             ligne_1 += ',' + MT.etat_bande[i][MT.tete_lecture[i]]
-        ligne_2 = MT.transitions[ligne_1].split(',')
+        try:
+            ligne_2 = MT.transitions[ligne_1].split(',')
+        except:
+            print('Erreur de transitions! Le code est mal construit.')
+            exit()
 
         #modification
         MT.etat = ligne_2[0]
