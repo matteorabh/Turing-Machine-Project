@@ -1,7 +1,14 @@
 from question2 import pas
+from question1 import initialisation
 
 def simulation(mot,MT):
-    MT.etat_bande[0] = [lettre for lettre in mot]
+    MT.etat_bande[1] = [lettre for lettre in mot]
+    MT.affichage()
     while MT.etat != 'F':
         pas(MT)
         MT.affichage()
+    print()
+    print('La simulation de la machine de Turing est terminé !')
+    print()
+
+simulation('110',initialisation('1010','MT_Donnee.txt'))

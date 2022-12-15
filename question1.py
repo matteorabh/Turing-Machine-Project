@@ -31,9 +31,15 @@ class MT(object):
         print('position tete de lecture pour chaque bande :', self.tete_lecture)
         print('Les transitions du fichier :', self.transitions)
 
-    def affichage():
+    def affichage(self):
+
         print("--------------------------------")
-        print()
+        for i in range(1,self.nb_bande+1):
+            liste = self.etat_bande[i]
+            mot = ''
+            for j in range(len(liste)):
+                mot += liste[j] + ' '
+            print(mot)
         print("--------------------------------")
 
 def initialisation(mot,fichier):
@@ -41,6 +47,4 @@ def initialisation(mot,fichier):
     M1.preparation_initial(fichier,mot)
     return M1
 
-M1 = initialisation('1010','MT_Donnee.txt')
-M1.element()
     

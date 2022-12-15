@@ -4,8 +4,7 @@ from question1 import initialisation
 def allonge_bande(liste,binaire):
     if binaire == 0:
         l = ['_'] 
-        for elem in liste:
-            l.append(elem)
+        l.extend(liste)
         return l 
     else:
         return liste.append('_')
@@ -34,4 +33,4 @@ def pas(MT):
         print("Vous n'avez pas initialisé votre machine de Turing!")
         exit()
 
-pas(initialisation('1010','MT_Donnee.txt'))
+#pas(initialisation('1010','MT_Donnee.txt'))
