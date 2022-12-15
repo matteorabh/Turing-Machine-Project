@@ -2,6 +2,11 @@ from question1 import initialisation
 
 
 def allonge_bande(liste,binaire):
+    """
+    Permet d'aggrandir la bande. 
+    Ajoute un _ à la fin de la liste si la tête de lecture avance. 
+    Ajoute un _ au début de la liste si la tête de lecture recule. 
+    """
     if binaire == 0:
         l = ['_'] 
         l.extend(liste)
@@ -10,6 +15,9 @@ def allonge_bande(liste,binaire):
         return liste.append('_')
 
 def pas(MT):  
+    """
+    Effectue un pas de calcul de la Machine de Turing. 
+    """
     if MT.transitions != False:
         nb_bande = MT.nb_bande
         ligne_1 = MT.etat
