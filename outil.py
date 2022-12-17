@@ -36,5 +36,24 @@ def verif_determinisme(fichier, transitions):
                 exit()
     return True
 
-def verif_binaire():
-    return
+def verif_alphabet(fichier, nb_bandes) :
+    with open(fichier) as f :
+        lines = supp_n(f.readlines())
+        for i in range(0, len(lines)) :
+            for index in range(1, nb_bandes) :
+                if lines[i].split(',')[index] not in ["1", "0", "_"] :
+                    print("La machine de Turing est incorrecte car l'alphabet n'est pas bon")
+                    exit()
+    return True
+
+def verif_decalage(fichier, nb_bandes) :
+    ligne = []
+    with open(fichier) as f :
+        lines = supp_n(f.readlines())
+        for i in range(1, len(lines)-1, 2) :
+            ligne = lines[i].split(',')
+            for elem in ligne[nb_bandes+1:] :
+                if elem not in [">", "<", "-"] :
+                    print("La machine de Turing est incorrecte car la syntaxe de décalage des bandes est incorrecte")
+                    exit()
+    return True
