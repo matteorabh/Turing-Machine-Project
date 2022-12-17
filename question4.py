@@ -16,4 +16,4 @@ def simulation(mot,MT):
     print('La simulation de la machine de Turing est terminé !')
     print()
 
-simulation('1101',initialisation('1010','MT_Donnee.txt'))
+simulation('000000001',initialisation('0100','MT_COPY.txt'))

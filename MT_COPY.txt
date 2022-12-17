@@ -1,38 +1,14 @@
-I, 1, 1
-qCopy, 1, 1, >, >
-
-I, 1, 0
-qCopy, 1, 1, >, >
-
 I, 1, _
 qCopy, 1, 1, >, >
-
-I, 0, 1
-qCopy, 0, 0, >, >
-
-I, 0, 0
-qCopy, 0, 0, >, >
 
 I, 0, _
 qCopy, 0, 0, >, >
 
-qCopy, 1, 1
-qCopy, 1, 1, >, >
-
-qCopy, 1, 0
-qCopy, 1, 1, >, >
-
 qCopy, 1, _
 qCopy, 1, 1, >, >
 
-qCopy, 0, 1
-qCopy, 1, 1, >, >
-
-qCopy, 0, 0
-qCopy, 1, 1, >, >
-
 qCopy, 0, _
-qCopy, 1, 1, >, >
+qCopy, 0, 0, >, >
 
 I, _, _
 F, _, _, -, -
