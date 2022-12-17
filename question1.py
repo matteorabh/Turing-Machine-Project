@@ -1,4 +1,4 @@
-from outil import supp_n, verif_etat_initial_final
+from outil import supp_n, verif_etat_initial_final, verif_determinisme, verif_decalage, verif_alphabet
 import time
 
 
@@ -31,8 +31,10 @@ class MT(object):
         self.etat_bande[1] = [lettre for lettre in str(mot)]
 
         #Vérifications qu'il n'y a pas d'erreur dans le fichier
-        #outil.verif_determinisme(fichier,self.nb_bande,self.transitions)
+        verif_determinisme(fichier)
         verif_etat_initial_final(fichier)
+        verif_decalage(fichier,self.nb_bande)
+        verif_alphabet(fichier,self.nb_bande)
 
     def element(self):
         """
@@ -62,6 +64,7 @@ class MT(object):
             print(mot)
         print("--------------------------------")
         time.sleep(0.5)
+
 
 def initialisation(mot,fichier):
     """
