@@ -9,3 +9,9 @@ F, 1, -
 
 qcherche, 0
 qcherche, 0, >
+
+qcherche,_
+F,_,-
+
+I,_
+F,_,-

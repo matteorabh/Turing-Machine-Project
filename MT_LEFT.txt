@@ -4,6 +4,9 @@ qdroite, 1, >
 I, 0
 qdroite, 0, >
 
+I,_
+F,_,-
+
 qdroite, 1
 qdroite, 1, >
 
