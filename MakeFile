@@ -1,26 +1,31 @@
-question1: 
+question1:
 	python3 question1.py
+	rm -rf __pycache__
 
 question2:
 	python3 question2.py
+	rm -rf __pycache__
 
 question3:
 	python3 question3.py
+	rm -rf __pycache__
 
 question4:
 	python3 question4.py
+	rm -rf __pycache__
 
 question5:
 	python3 question5.py
+	rm -rf __pycache__
 
 question6:
 	python3 question6.py
+	rm -rf __pycache__
 
 question7:
 	python3 question7.py
+	rm -rf __pycache__
 
 question8:
 	python3 question8.py
-
-clean:
 	rm -rf __pycache__
