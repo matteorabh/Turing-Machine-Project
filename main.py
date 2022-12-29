@@ -159,3 +159,6 @@ def simulation_precise(mot,MT):
     print()
     print('La simulation de la machine de Turing est terminé !')
     print()
+
+#######################################################
+# Question 6
