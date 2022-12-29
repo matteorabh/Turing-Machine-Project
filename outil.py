@@ -44,7 +44,7 @@ def verif_alphabet(fichier, nb_bandes):
         lines = supp_n(f.readlines())
     for line in lines:
         for index in range(1,nb_bandes+1):
-            if line.split(',')[index] not in ["1", "0", "_"]:
+            if line.split(',')[index] not in ["1", "0", "_","+","*","#"]:
                 print("La machine de Turing est incorrecte car l'alphabet n'est pas correcte!")
                 exit()
     return True

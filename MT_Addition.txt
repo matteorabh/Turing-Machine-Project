@@ -1,0 +1,65 @@
+I, 1, _
+I, 1, 1, >, >
+
+I, 0, _
+I, 0, 0, >, >
+
+I, +, _
+qaddition, +, _, >, <
+
+
+qaddition, 0, 0
+qaddition, 0, 0, >, <
+
+qaddition, 0, 1
+qaddition, 0, 1, >, <
+
+qaddition, 1, 0
+qaddition, 1, 1, >, <
+
+qaddition, 1, 1
+qretenu, 1, 0, >, <
+
+qaddition, _, 0
+F, _, 0, -, -
+
+qaddition, _, 1
+F, _, 1, -, -
+
+qaddition, 0, _
+qaddition, 0, 0, >, <
+
+qaddition, 1, _
+qaddition, 1, 1, >, <
+
+qaddition, _, _
+F, _, _, -, -
+
+
+qretenu, 0, 0
+qaddition, 0, 1, >, <
+
+qretenu, 0, 1
+qretenu, 0, 0, >, <
+
+qretenu, 1, 0
+qretenu, 1, 0, >, <
+
+qretenu, 1, 1
+qretenu, 1, 1, >, <
+
+qretenu, _, 0
+F, _, 1, -, -
+
+qretenu, _, 1
+qretenu, _, 0, -, <
+
+qretenu, 0, _
+qaddition, 0, 1, >, <
+
+qretenu, 1, _
+qretenu, 1, 0, >, <
+
+qretenu, _, _
+F, _, 1, -, -
+
