@@ -164,31 +164,59 @@ def simulation_precise(mot,MT):
 #######################################################
 # Question 6
 
+def cumule_bandesM1(MT1) :
+    trans11 = list(MT1.transitions.keys())
+    trans12 = list(MT1.transitions.values())
+    liste_ecrire1 = []
+    liste_ecrire2 = []
+    for i in range(len(MT1.transitions)) : 
+        if len(trans11[i].split(',')) == MT1.nb_bande + 3 :              #Si on repère une ligne differente (qui contient un appel).
+            MT2_initial = trans11[i].split(',')[0]                       #On recupre le nom final et initial qu'on recopiera lors de l'ecriture de la seconde machine.
+            MT2_final = trans11[i].split(',')[MT1.nb_bande+2]
+            continue
+        liste_ecrire1.append([str(trans11[i]) + '\n'])
+        liste_ecrire2.append([str(trans12[i]) + '\n'])
+    return MT2_initial, MT2_final, liste_ecrire1, liste_ecrire2
+
+def cumule_bandesM2(MT2, MT2_initial, MT2_final):
+    liste_ecrire1 = []
+    liste_ecrire2 = []
+    trans21 = list(MT2.transitions.keys())
+    trans22 = list(MT2.transitions.values())
+    for index in range(len(MT2.transitions)) :
+        mot1 = ""
+        for elem in trans21[index].split(',') :
+            if elem == 'I' :
+                mot1 += MT2_initial
+                continue
+            if mot1 == "" :
+                mot1 += elem + "MT2"
+                continue
+            mot1 += "," + elem
+        liste_ecrire1.append(mot1 + "\n")
+    for index in range(len(MT2.transitions)) :
+        mot2 = ""
+        for elem in trans22[index].split(',') :
+            if elem == 'F' :
+                mot2 += MT2_final
+                continue
+            if mot2 == "" :
+                mot2 += elem + "MT2"
+                continue
+            mot2 += "," + elem
+        liste_ecrire2.append(mot2 + "\n")
+    return liste_ecrire1, liste_ecrire2
+
+
 def assemble_machines(MT1, MT2) :
     with open("MT3.txt", "w") as MT3 :
-        trans11 = list(MT1.transitions.keys())
-        trans12 = list(MT1.transitions.values())
-        for i in range(len(MT1.transitions)) :                               #Pour chaque transition.
-            if len(trans11[i].split(',')) == MT1.nb_bande + 3 :              #Si on repère une ligne differente (qui contient un appel).
-                MT2_initial = trans11[i].split(',')[0]                       #On recupre le nom final et initial qu'on recopiera lors de l'ecriture de la seconde machine.
-                MT2_final = trans11[i].split(',')[MT1.nb_bande+2]
-                continue
-            MT3.write(str(trans11[i]) + '\n')                                #Sinon on recopie simplement la premiere machine.
-            MT3.write(str(trans12[i]) + '\n')
-        trans21 = list(MT2.transitions.keys())
-        trans22 = list(MT2.transitions.values())
-        for index in range(len(MT2.transitions)) :                           #Reecriture de la deuxieme machine.
-            if list(trans21[index][0])[0] == 'I' :                           #Si un caractere est un I (etat initial), on le remplace par l'etat la premiere machine lors de l'appel de la seconde.
-                MT3.write(MT2_initial + "," + str(trans21[index].split(',')[1]) + "," + str(trans21[index].split(',')[2]) + "," + str(trans21[index].split(',')[3]) + '\n')
-                MT3.write(str(trans22[index].split(',')[0]) + "MT2," + str(trans22[index].split(',')[1]) + "," + str(trans22[index].split(',')[2]) + "," + str(trans22[index].split(',')[3]) + "," + str(trans22[index].split(',')[4]) + "," + str(trans22[index].split(',')[5]) + "," + str(trans22[index].split(',')[6]) + '\n')
-                continue
-            if trans22[index][0] == 'I' :                                    #On refait la meme chose ici.
-                MT3.write(str(trans21[index].split(',')[0]) + "MT2," + str(trans21[index].split(',')[1]) + "," + str(trans21[index].split(',')[2]) + "," + str(trans21[index].split(',')[3]) + '\n')
-                MT3.write(MT2_initial + "," + str(trans22[index].split(',')[1]) + "," + str(trans22[index].split(',')[2]) + "," + str(trans22[index].split(',')[3]) + "," + str(trans22[index].split(',')[4]) + "," + str(trans22[index].split(',')[5]) + "," + str(trans22[index].split(',')[6]) + '\n')
-                continue
-            if trans22[index][0] == 'F' :                                    #Si un caractere est un F (etat initial), on le remplace par l'etat attendu lors de l'appel de la seconde.
-                MT3.write(str(trans21[index].split(',')[0]) + "MT2," + str(trans21[index].split(',')[1]) + "," + str(trans21[index].split(',')[2]) + "," + str(trans21[index].split(',')[3]) + '\n')
-                MT3.write(MT2_final + "," + trans22[index].split(',')[1] + "," + trans22[index].split(',')[2] + "," + trans22[index].split(',')[3] + "," + trans22[index].split(',')[4] + "," + trans22[index].split(',')[5] + "," + trans22[index].split(',')[6] + '\n')
-                continue
-            MT3.write(str(trans21[index].split(',')[0]) + "MT2," + str(trans21[index].split(',')[1]) + "," + str(trans21[index].split(',')[2]) + "," + str(trans21[index].split(',')[3]) + '\n')                 #Sinon on recopie simplement le code de la seconde machine.
-            MT3.write(str(trans22[index].split(',')[0]) + "MT2," + str(trans22[index].split(',')[1]) + "," + str(trans22[index].split(',')[2]) + "," + str(trans22[index].split(',')[3]) + "," + str(trans22[index].split(',')[4]) + "," + str(trans22[index].split(',')[5]) + "," + str(trans22[index].split(',')[6]) + '\n')
+        liste_MT1 = cumule_bandesM1(MT1)
+        print(liste_MT1[0], liste_MT1[1])
+        for i in range(len(liste_MT1[2])) :
+            MT3.write(str(liste_MT1[2][i][0]))
+            MT3.write(str(liste_MT1[3][i][0]))
+        liste_MT2 = cumule_bandesM2(MT2, liste_MT1[0], liste_MT1[1])
+        print(liste_MT2[0])
+        for index in range(len(liste_MT2[0])) :                           #Reecriture de la deuxieme machine.
+            MT3.write(liste_MT2[0][index])                 #Sinon on recopie simplement le code de la seconde machine.
+            MT3.write(liste_MT2[1][index])
