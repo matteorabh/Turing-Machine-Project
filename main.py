@@ -1,5 +1,5 @@
 from outil import supp_n, verif_etat_initial_final, verif_determinisme, verif_decalage, verif_alphabet
-import time, os, sys
+import time
 
 
 #######################################################
