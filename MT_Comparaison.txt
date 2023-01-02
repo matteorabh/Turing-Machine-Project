@@ -112,6 +112,9 @@ qrecopieXY,0,0,_,>,>,-
 qrecopieXY,_,_,_
 qremonteXY,_,_,_,<,<,-
 
+qrecopieXY,#,_,_
+qremonteXY,#,_,_,<,<,-
+
 qremonteXY,1,1,_
 qremonteXY,1,1,_,<,<,-
 

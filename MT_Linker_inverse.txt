@@ -1,0 +1,11 @@
+I,_,_,_
+qInverse,_,_,_,<,<,<
+
+qInverse,1,1,0
+qInverse,0,0,1,<,<,<
+
+qInverse,0,0,1
+qInverse,1,1,0,<,<,<
+
+qInverse,_,_,_
+F,_,_,_,-,-,-
