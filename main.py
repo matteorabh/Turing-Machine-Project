@@ -90,9 +90,9 @@ def allonge_bande(liste,binaire):
     if binaire == 0:
         l = ['_'] 
         l.extend(liste)
-        return l if liste[0] != '_' else liste
+        return l #if liste[0] != '_' else liste
     else:
-        return liste.append('_') if liste[-1] != '_' else liste
+        return liste.append('_') #if liste[-1] != '_' else liste
 
 def pas(MT):  
     """
@@ -163,33 +163,31 @@ def simulation_precise(mot,MT):
 #######################################################
 # Question 6
 
-def assemble_machines(mot, MT1) :
+def assemble_machines(MT1, MT2) :
     with open("MT3.txt", "w") as MT3 :
         trans11 = list(MT1.transitions.keys())
         trans12 = list(MT1.transitions.values())
-        for i in range(len(MT1.transitions)) :
-            if len(trans11[i].split(',')) == MT1.nb_bande + 3 :
-                MT2_initial = trans11[i].split(',')[0]
-                MT2_nom = trans11[i].split(',')[MT1.nb_bande +1]
+        for i in range(len(MT1.transitions)) :                               #Pour chaque transition.
+            if len(trans11[i].split(',')) == MT1.nb_bande + 3 :              #Si on repère une ligne differente (qui contient un appel).
+                MT2_initial = trans11[i].split(',')[0]                       #On recupre le nom final et initial qu'on recopiera lors de l'ecriture de la seconde machine.
                 MT2_final = trans11[i].split(',')[MT1.nb_bande+2]
                 continue
-            MT3.write(str(trans11[i]) + '\n')
+            MT3.write(str(trans11[i]) + '\n')                                #Sinon on recopie simplement la premiere machine.
             MT3.write(str(trans12[i]) + '\n')
-        MT2 = initialisation(mot, MT2_nom.replace('"', ''))
         trans21 = list(MT2.transitions.keys())
         trans22 = list(MT2.transitions.values())
-        for index in range(len(MT2.transitions)) :
-            if list(trans21[index][0])[0] == 'I' :
+        for index in range(len(MT2.transitions)) :                           #Reecriture de la deuxieme machine.
+            if list(trans21[index][0])[0] == 'I' :                           #Si un caractere est un I (etat initial), on le remplace par l'etat la premiere machine lors de l'appel de la seconde.
                 MT3.write(MT2_initial + "," + str(trans21[index].split(',')[1]) + "," + str(trans21[index].split(',')[2]) + "," + str(trans21[index].split(',')[3]) + '\n')
                 MT3.write(str(trans22[index].split(',')[0]) + "MT2," + str(trans22[index].split(',')[1]) + "," + str(trans22[index].split(',')[2]) + "," + str(trans22[index].split(',')[3]) + "," + str(trans22[index].split(',')[4]) + "," + str(trans22[index].split(',')[5]) + "," + str(trans22[index].split(',')[6]) + '\n')
                 continue
-            if trans22[index][0] == 'I' :
+            if trans22[index][0] == 'I' :                                    #On refait la meme chose ici.
                 MT3.write(str(trans21[index].split(',')[0]) + "MT2," + str(trans21[index].split(',')[1]) + "," + str(trans21[index].split(',')[2]) + "," + str(trans21[index].split(',')[3]) + '\n')
                 MT3.write(MT2_initial + "," + str(trans22[index].split(',')[1]) + "," + str(trans22[index].split(',')[2]) + "," + str(trans22[index].split(',')[3]) + "," + str(trans22[index].split(',')[4]) + "," + str(trans22[index].split(',')[5]) + "," + str(trans22[index].split(',')[6]) + '\n')
                 continue
-            if trans22[index][0] == 'F' :
+            if trans22[index][0] == 'F' :                                    #Si un caractere est un F (etat initial), on le remplace par l'etat attendu lors de l'appel de la seconde.
                 MT3.write(str(trans21[index].split(',')[0]) + "MT2," + str(trans21[index].split(',')[1]) + "," + str(trans21[index].split(',')[2]) + "," + str(trans21[index].split(',')[3]) + '\n')
                 MT3.write(MT2_final + "," + trans22[index].split(',')[1] + "," + trans22[index].split(',')[2] + "," + trans22[index].split(',')[3] + "," + trans22[index].split(',')[4] + "," + trans22[index].split(',')[5] + "," + trans22[index].split(',')[6] + '\n')
                 continue
-            MT3.write(str(trans21[index].split(',')[0]) + "MT2," + str(trans21[index].split(',')[1]) + "," + str(trans21[index].split(',')[2]) + "," + str(trans21[index].split(',')[3]) + '\n')
+            MT3.write(str(trans21[index].split(',')[0]) + "MT2," + str(trans21[index].split(',')[1]) + "," + str(trans21[index].split(',')[2]) + "," + str(trans21[index].split(',')[3]) + '\n')                 #Sinon on recopie simplement le code de la seconde machine.
             MT3.write(str(trans22[index].split(',')[0]) + "MT2," + str(trans22[index].split(',')[1]) + "," + str(trans22[index].split(',')[2]) + "," + str(trans22[index].split(',')[3]) + "," + str(trans22[index].split(',')[4]) + "," + str(trans22[index].split(',')[5]) + "," + str(trans22[index].split(',')[6]) + '\n')

@@ -108,5 +108,5 @@ ymult2,_,_,_
 test,_,0,_,-,>,-
 
 
-z,_,_,_,"MT_Addition.txt",ymult2
+z,_,_,_,MT2,ymult2
 F,_,_,_,-,-,-
