@@ -49,6 +49,12 @@ qrecopieXY,_,_,_,>,>,-
 qXsup,#,_,_
 qrecopieXY,#,_,_,>,>,-
 
+qremonteY,0,_,_
+qremonteY,0,_,_,>,-,-
+
+qremonteY,1,_,_
+qremonteY,1,_,_,>,-,-
+
 qremonteY,_,1,_
 qremonteY,_,1,_,-,<,-
 
