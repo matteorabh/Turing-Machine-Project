@@ -165,20 +165,29 @@ def simulation_precise(mot,MT):
 # Question 6
 
 def cumule_bandesM1(MT1) :
-    trans11 = list(MT1.transitions.keys())
+    """
+    Fonction qui retourne 2 listes contenant le texte des transitions à écrire
+    et qui retourne également les noms de l'état initial et final que nous écrirons 
+    à la place des états finaux et initiaux de la seconde machine.
+    """
+    trans11 = list(MT1.transitions.keys())                               # transitions sous forme de dictionnaires transformees en liste
     trans12 = list(MT1.transitions.values())
     liste_ecrire1 = []
     liste_ecrire2 = []
     for i in range(len(MT1.transitions)) : 
-        if len(trans11[i].split(',')) == MT1.nb_bande + 3 :              #Si on repère une ligne differente (qui contient un appel).
-            MT2_initial = trans11[i].split(',')[0]                       #On recupre le nom final et initial qu'on recopiera lors de l'ecriture de la seconde machine.
+        if len(trans11[i].split(',')) == MT1.nb_bande + 3 :              #Si on repère une ligne differente (qui contient un appel de machine) :
+            MT2_initial = trans11[i].split(',')[0]                       #On recupre le nom de l'état final et initial qu'on recopiera lors de l'ecriture de la seconde machine.
             MT2_final = trans11[i].split(',')[MT1.nb_bande+2]
             continue
-        liste_ecrire1.append([str(trans11[i]) + '\n'])
-        liste_ecrire2.append([str(trans12[i]) + '\n'])
+        liste_ecrire1.append([str(trans11[i]) + '\n'])                   #Sinon on ajoute dans une liste les premieres lignes de transitions a ecrire.(lecture de l'etat et des bandes)
+        liste_ecrire2.append([str(trans12[i]) + '\n'])                   #Pareil pour les deuxieme lignes. (nouvel etat, nouveau caractere et decalage des tetes de lecture)
     return MT2_initial, MT2_final, liste_ecrire1, liste_ecrire2
 
 def cumule_bandesM2(MT2, MT2_initial, MT2_final):
+    """
+    fonction qui retourne 2 listes contenant le texte des transitions à écrire
+    avec le nom de l'état final et initial modifié.
+    """
     liste_ecrire1 = []
     liste_ecrire2 = []
     trans21 = list(MT2.transitions.keys())
@@ -186,8 +195,8 @@ def cumule_bandesM2(MT2, MT2_initial, MT2_final):
     for index in range(len(MT2.transitions)) :
         mot1 = ""
         for elem in trans21[index].split(',') :
-            if elem == 'I' :
-                mot1 += MT2_initial
+            if elem == 'I' :                            #Si un etat est l'état initial :
+                mot1 += MT2_initial                     #On le modifie par l'état initial indiqué dans la transition spéciale.
                 continue
             if mot1 == "" :
                 mot1 += elem + "MT2"
@@ -197,8 +206,8 @@ def cumule_bandesM2(MT2, MT2_initial, MT2_final):
     for index in range(len(MT2.transitions)) :
         mot2 = ""
         for elem in trans22[index].split(',') :
-            if elem == 'F' :
-                mot2 += MT2_final
+            if elem == 'F' :                            #Si un etat est l'état final :
+                mot2 += MT2_final                       #On le modifie par l'état final indiqué dans la transition spéciale.
                 continue
             if mot2 == "" :
                 mot2 += elem + "MT2"
@@ -209,14 +218,15 @@ def cumule_bandesM2(MT2, MT2_initial, MT2_final):
 
 
 def assemble_machines(MT1, MT2) :
+    """
+    Fonction qui écrit dans un fichier le code de 2 machines de Turing.
+    """
     with open("MT3.txt", "w") as MT3 :
         liste_MT1 = cumule_bandesM1(MT1)
-        print(liste_MT1[0], liste_MT1[1])
-        for i in range(len(liste_MT1[2])) :
+        for i in range(len(liste_MT1[2])) :                         #Ecriture de la premiere machine.
             MT3.write(str(liste_MT1[2][i][0]))
             MT3.write(str(liste_MT1[3][i][0]))
         liste_MT2 = cumule_bandesM2(MT2, liste_MT1[0], liste_MT1[1])
-        print(liste_MT2[0])
-        for index in range(len(liste_MT2[0])) :                           #Reecriture de la deuxieme machine.
-            MT3.write(liste_MT2[0][index])                 #Sinon on recopie simplement le code de la seconde machine.
+        for index in range(len(liste_MT2[0])) :                     #Ecriture de la seconde machine.
+            MT3.write(liste_MT2[0][index])
             MT3.write(liste_MT2[1][index])
