@@ -190,30 +190,24 @@ def cumule_bandesM2(MT2, MT2_initial, MT2_final):
     """
     liste_ecrire1 = []
     liste_ecrire2 = []
-    trans21 = list(MT2.transitions.keys())
-    trans22 = list(MT2.transitions.values())
-    for index in range(len(MT2.transitions)) :
+    transaddition = list(MT2.transitions.keys()) + list(MT2.transitions.values())
+    for elem in transaddition :                         #Pour chaque ligne de transition :
         mot1 = ""
-        for elem in trans21[index].split(',') :
-            if elem == 'I' :                            #Si un etat est l'état initial :
+        for element in elem.split(',') :                #Pour chaque élément de la transition (séparé par une virgule pour les analyser un par un)
+            if element == 'I' :                         #Si un etat est l'état initial :
                 mot1 += MT2_initial                     #On le modifie par l'état initial indiqué dans la transition spéciale.
                 continue
-            if mot1 == "" :
-                mot1 += elem + "MT2"
+            elif element == 'F' :                       #Si un etat est l'état final :
+                mot1 += MT2_final                       #On le modifie par l'état final indiqué dans la transition spéciale.
                 continue
-            mot1 += "," + elem
-        liste_ecrire1.append(mot1 + "\n")
-    for index in range(len(MT2.transitions)) :
-        mot2 = ""
-        for elem in trans22[index].split(',') :
-            if elem == 'F' :                            #Si un etat est l'état final :
-                mot2 += MT2_final                       #On le modifie par l'état final indiqué dans la transition spéciale.
+            elif mot1 == "" :
+                mot1 += element + "MT2"
                 continue
-            if mot2 == "" :
-                mot2 += elem + "MT2"
-                continue
-            mot2 += "," + elem
-        liste_ecrire2.append(mot2 + "\n")
+            mot1 += "," + element
+        if len(list(mot1.split(','))) == MT2.nb_bande +1 :      #Si la longueur du mot correspond à une ligne sans décalage de bande :
+            liste_ecrire1.append(mot1 + "\n")                   #On l'ajoute à la première liste.
+        else :
+            liste_ecrire2.append(mot1 + "\n")                   #Sinon on l'ajoute à la deuxième.
     return liste_ecrire1, liste_ecrire2
 
 
