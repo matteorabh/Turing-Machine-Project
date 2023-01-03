@@ -90,9 +90,9 @@ def allonge_bande(liste,binaire):
     if binaire == 0:
         l = ['_'] 
         l.extend(liste)
-        return l #if liste[0] != '_' else liste
+        return l 
     else:
-        return liste.append('_') #if liste[-1] != '_' else liste
+        return liste.append('_') 
 
 def pas(MT):  
     """
